@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executive Impact Brief | Dheeraj Dubey</title>
+  <style>
+    :root {
+      --surface: #f6faff;
+      --surface-2: #f8fafc;
+      --card: #ffffff;
+      --line: #e2e8f0;
+      --line-2: #c3c6d1;
+      --primary: #001e40;
+      --primary-2: #003366;
+      --secondary: #0062a2;
+      --secondary-soft: #d2effa;
+      --tertiary: #0f766e;
+      --error: #ba1a1a;
+      --warn: #c2410c;
+      --text: #0a1d29;
+      --muted: #43474f;
+      --muted-2: #64748b;
+      --shadow: 0 4px 20px rgba(0, 51, 102, 0.05);
+      --radius: 12px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(246, 250, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      color: var(--primary);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .navlinks {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .navlinks a {
+      border-bottom: 2px solid transparent;
+      padding: 4px 0;
+    }
+
+    .navlinks a:hover { color: var(--primary); border-bottom-color: var(--primary); }
+
+    main, footer { max-width: var(--max); margin: 0 auto; }
+
+    .hero {
+      min-height: auto;
+      padding: 58px 32px 60px;
+      display: block;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 92% 16%, rgba(0, 98, 162, 0.08), transparent 26%),
+        linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
+    }
+
+    .overview-copy { max-width: 980px; }
+
+    .eyebrow-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 22px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--secondary-soft);
+      color: var(--secondary);
+      border: 1px solid rgba(0, 98, 162, 0.18);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      color: var(--primary);
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.04;
+      letter-spacing: -0.05em;
+      font-weight: 850;
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: 0;
+      padding-left: 18px;
+      border-left: 3px solid var(--primary);
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .hero-note {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 880px;
+    }
+
+    .hero-note.concise { grid-template-columns: 1.15fr 0.85fr; }
+
+    .note-card {
+      padding: 15px 16px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      min-height: 84px;
+    }
+
+    .note-card strong { display: block; color: var(--primary); font-size: 14px; margin-bottom: 8px; }
+    .note-card span { display: block; color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+    .hero-visual {
+      min-height: 340px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: -30% -20% auto auto;
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(0,98,162,.18), transparent 62%);
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,30,64,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,30,64,.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: .8;
+    }
+
+    .hero-diagram { width: 86%; height: auto; position: relative; z-index: 2; }
+
+    section { border-bottom: 1px solid var(--line); }
+
+    .section-pad { padding: 68px 32px; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-title { margin: 0 0 8px; color: var(--primary); font-size: 32px; line-height: 1.18; letter-spacing: -0.03em; }
+    .section-copy { margin: 0; color: var(--muted); max-width: 720px; font-size: 16px; }
+
+    .impact-stack { display: flex; flex-direction: column; gap: 28px; }
+
+    .impact-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 28px;
+      align-items: stretch;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      opacity: 1;
+    }
+
+    .impact-row:nth-child(even) { background: #fbfdff; }
+
+    .impact-content { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+
+    .company {
+      width: max-content;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--secondary);
+      background: var(--secondary-soft);
+      border: 1px solid rgba(0,98,162,.16);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 850;
+      letter-spacing: .08em;
+      margin-bottom: 14px;
+    }
+
+    .impact-title { margin: 0 0 10px; color: var(--primary); font-size: 24px; line-height: 1.25; letter-spacing: -0.02em; }
+
+    .impact-summary { margin: 0 0 18px; color: var(--muted); font-size: 15px; max-width: 650px; }
+
+    .two-box { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .info-box {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 16px 18px;
+      position: relative;
+    }
+
+    .info-box.problem { border-left: 4px solid var(--error); }
+    .info-box.value { border-left: 4px solid var(--secondary); }
+
+    .info-box h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .info-box p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .anim-panel {
+      min-height: 270px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .anim-title {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      z-index: 2;
+      font-size: 11px;
+      color: var(--muted-2);
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .anim-caption {
+      position: absolute;
+      right: 16px;
+      bottom: 14px;
+      z-index: 2;
+      font-size: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-weight: 800;
+    }
+
+    svg { max-width: 100%; height: auto; }
+    .pcap-svg { width: 96%; max-height: 242px; }
+
+    .red-path { stroke: rgba(186,26,26,.55); stroke-width: 4; fill: none; stroke-dasharray: 8 7; animation: dash 2s linear infinite; }
+    .blue-path { stroke: rgba(0,98,162,.74); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .green-path { stroke: rgba(5,150,105,.82); stroke-width: 5; fill: none; stroke-linecap: round; }
+    .muted-path { stroke: rgba(115,119,128,.35); stroke-width: 4; fill: none; stroke-dasharray: 8 8; }
+    .node { fill: #ffffff; stroke: var(--primary-2); stroke-width: 2; }
+    .node-soft { fill: #eff6ff; stroke: #94a3b8; stroke-width: 2; }
+    .packet-red { fill: var(--error); filter: drop-shadow(0 0 4px rgba(186,26,26,.4)); }
+    .packet-green { fill: #059669; filter: drop-shadow(0 0 5px rgba(5,150,105,.5)); }
+    .packet-blue { fill: var(--secondary); filter: drop-shadow(0 0 5px rgba(0,98,162,.45)); }
+
+    @keyframes dash { to { stroke-dashoffset: -60; } }
+    @keyframes blinkRed { 0%, 38% { opacity: 1; } 48%, 100% { opacity: .15; } }
+    @keyframes showGreen { 0%, 42% { opacity: .1; } 55%, 100% { opacity: 1; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.08); opacity: .72; } }
+    @keyframes scan { 0% { transform: translateY(-60px); opacity: 0; } 20%,80% { opacity: 1; } 100% { transform: translateY(260px); opacity: 0; } }
+    @keyframes meterDrop { 0%, 35% { width: 86%; background: #fb7185; } 70%, 100% { width: 26%; background: #059669; } }
+    @keyframes standbyPulse { 0%, 35% { opacity: 1; } 60%, 100% { opacity: .22; } }
+    @keyframes flowFade { 0%, 38% { opacity: 0; } 55%, 100% { opacity: 1; } }
+    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+    @keyframes textReveal { 0%, 45% { opacity: 0; transform: translateX(8px); } 70%,100% { opacity: 1; transform: translateX(0); } }
+
+    .phase-red { animation: blinkRed 7s ease-in-out infinite; transform-origin: center; }
+    .phase-green { animation: showGreen 7s ease-in-out infinite; transform-origin: center; }
+    .pulse { animation: pulse 2.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+    .cost-fill { animation: meterDrop 7s ease-in-out infinite; }
+    .standby { animation: standbyPulse 7s ease-in-out infinite; }
+    .flow-late { animation: flowFade 7s ease-in-out infinite; }
+    .spin { animation: rotateSlow 18s linear infinite; transform-box: fill-box; transform-origin: center; }
+    .reveal { animation: textReveal 7s ease-in-out infinite; }
+
+    .recognition-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .mini-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      min-height: 210px;
+    }
+
+    .mini-card.dark { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .mini-card.dark p { color: rgba(255,255,255,.78); }
+    .mini-card h3 { margin: 16px 0 10px; color: var(--primary); font-size: 17px; }
+    .mini-card.dark h3 { color: #fff; }
+    .mini-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.65; }
+
+    .icon-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--secondary-soft);
+      border: 1px solid rgba(0,98,162,.16);
+      color: var(--secondary);
+      font-weight: 900;
+    }
+
+    .dark .icon-box { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.18); }
+
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .road-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--secondary); }
+    .dot.gray { background: #94a3b8; }
+    .road-item h3 { margin: 0 0 4px; color: var(--primary); font-size: 16px; }
+    .road-item p { margin: 0; color: var(--muted); font-size: 13px; }
+    .status {
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--secondary);
+      background: var(--secondary-soft);
+      border: 1px solid rgba(0,98,162,.16);
+      border-radius: 999px;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+    .status.ongoing { color: var(--muted); background: #edf2f7; border-color: var(--line); }
+
+    .callout {
+      margin-top: 40px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 18px;
+      padding: 46px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .callout::before {
+      content: "";
+      position: absolute;
+      right: -100px;
+      top: -140px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(98,176,254,.35), transparent 62%);
+    }
+
+    .quote-mark { font-size: 12px; color: #9dcaff; line-height: 1; opacity: .95; text-transform: uppercase; letter-spacing: .16em; font-weight: 850; position: relative; z-index: 1; }
+    .callout p { margin: 14px auto 0; max-width: 840px; font-size: 20px; line-height: 1.55; font-weight: 700; position: relative; z-index: 1; }
+
+    footer {
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 12px;
+      background: #ebf5ff;
+    }
+
+    /* Scroll-in animation with no-js safe visibility */
+    .fade-up { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .no-js .fade-up { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .001ms !important; }
+      .fade-up { opacity: 1; transform: none; }
+    }
+
+    @media (max-width: 920px) {
+      .nav { padding: 14px 22px; }
+      .navlinks { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 52px 22px 56px; }
+      .hero-note { grid-template-columns: 1fr; }
+      .hero-note.concise { grid-template-columns: 1fr; }
+      .section-pad { padding: 54px 22px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+      .impact-row { grid-template-columns: 1fr; padding: 20px; }
+      .two-box { grid-template-columns: 1fr; }
+      .recognition-grid { grid-template-columns: 1fr; }
+      .road-item { grid-template-columns: auto 1fr; }
+      .road-item .status { grid-column: 2; width: max-content; }
+      footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body class="no-js">
+  <div class="topbar">
+    <nav class="nav" aria-label="Page navigation">
+      <div class="brand">Executive Impact Brief</div>
+      <div class="navlinks">
+        <a href="#overview">Overview</a>
+        <a href="#impact">Impact</a>
+        <a href="#leadership">Enablement</a>
+        <a href="#roadmap">Automation Roadmap</a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="overview-copy">
+        <div class="eyebrow-row">
+          <span class="pill">400 Club Recognition</span>
+        </div>
+        <h1>Dheeraj Dubey</h1>
+        <p class="hero-subtitle">
+          Stabilizing complex networks and scaling fixes through AI, automation, documentation, and team enablement.
+        </p>
+        <div class="hero-note concise">
+          <div class="note-card fade-up">
+            <strong>Core pattern</strong>
+            <span>Own the complex issue -> stabilize customer impact -> convert the learning into reusable capability.</span>
+          </div>
+          <div class="note-card fade-up">
+            <strong>Proof areas</strong>
+            <span>Sylvamo stabilization, cost control, AI PCAP Analyzer, Prisma knowledge sharing, and automation/IaC work.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="impact">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Three impact lanes</h2>
+          <p class="section-copy">The case is not a task list. It is a repeatable pattern: stabilize the complex issue, protect customer value, then convert the learning into scalable capability.</p>
+        </div>
+      </div>
+
+      <div class="impact-stack">
+        <article class="impact-row fade-up">
+          <div class="impact-content">
+            <div class="company">Sylvamo</div>
+            <h2 class="impact-title">Hairpinning and random packet drop</h2>
+            <p class="impact-summary">Resolved post-migration routing behavior that created random path selection, loop-like forwarding, latency, and instability.</p>
+            <div class="two-box">
+              <div class="info-box problem">
+                <h3>Problem</h3>
+                <p>Incorrect policy behavior caused traffic to move through inefficient paths, creating degraded performance and increased escalation noise.</p>
+              </div>
+              <div class="info-box value">
+                <h3>Action &amp; value</h3>
+                <p>Corrected routing and path-policy behavior to restore predictable forwarding, reduce latency complaints, and stabilize customer operations.</p>
+              </div>
+            </div>
+          </div>
+          <div class="anim-panel">
+            <div class="anim-title">Before: random / hairpin &nbsp; | &nbsp; After: clean flow</div>
+            <svg viewBox="0 0 520 300" aria-label="Traffic changes from red random hairpin flow to green clean path">
+              <rect x="0" y="0" width="520" height="300" fill="#ffffff" />
+              <path d="M48 150 H470" stroke="#e2e8f0" stroke-width="1" />
+              <path d="M72 150 C160 40, 280 260, 448 150" class="red-path phase-red" />
+              <path d="M72 150 C180 248, 262 55, 448 150" class="red-path phase-red" opacity=".8" />
+              <path d="M72 150 C170 150, 300 150, 448 150" class="green-path phase-green" />
+              <circle cx="72" cy="150" r="22" class="node" />
+              <circle cx="190" cy="75" r="16" class="node-soft" />
+              <circle cx="260" cy="220" r="16" class="node-soft" />
+              <circle cx="340" cy="76" r="16" class="node-soft" />
+              <circle cx="448" cy="150" r="22" class="node" />
+              <text x="72" y="155" text-anchor="middle" fill="#001e40" font-size="11" font-weight="800">SITE</text>
+              <text x="448" y="155" text-anchor="middle" fill="#001e40" font-size="11" font-weight="800">APP</text>
+              <circle r="8" class="packet-red phase-red">
+                <animateMotion dur="2.8s" repeatCount="indefinite" path="M72 150 C160 40, 280 260, 448 150" />
+              </circle>
+              <circle r="7" class="packet-red phase-red">
+                <animateMotion dur="3.4s" repeatCount="indefinite" path="M72 150 C180 248, 262 55, 448 150" />
+              </circle>
+              <circle r="9" class="packet-green phase-green">
+                <animateMotion dur="3.8s" repeatCount="indefinite" path="M72 150 C170 150, 300 150, 448 150" />
+              </circle>
+              <g class="phase-red">
+                <text x="252" y="44" fill="#ba1a1a" font-size="12" font-weight="800">unstable path selection</text>
+              </g>
+              <g class="phase-green">
+                <text x="214" y="190" fill="#059669" font-size="12" font-weight="850">policy corrected</text>
+              </g>
+            </svg>
+            <div class="anim-caption">routing stabilized</div>
+          </div>
+        </article>
+
+        <article class="impact-row fade-up">
+          <div class="impact-content">
+            <div class="company">Sylvamo</div>
+            <h2 class="impact-title">Path policy and LTE traffic steering</h2>
+            <p class="impact-summary">Corrected LTE behavior so cellular paths support failover instead of carrying avoidable traffic while primary circuits are healthy.</p>
+            <div class="two-box">
+              <div class="info-box problem">
+                <h3>Problem</h3>
+                <p>LTE SIMs stayed active beyond intended backup use, exposing the customer to unnecessary data usage and overage billing.</p>
+              </div>
+              <div class="info-box value">
+                <h3>Action &amp; value</h3>
+                <p>Implemented traffic steering and failover behavior to control cost exposure while preserving WAN resilience.</p>
+              </div>
+            </div>
+          </div>
+          <div class="anim-panel">
+            <div class="anim-title">Primary path active &nbsp; | &nbsp; LTE standby</div>
+            <svg viewBox="0 0 520 300" aria-label="LTE traffic steering cost control animation">
+              <rect x="0" y="0" width="520" height="300" fill="#ffffff" />
+              <circle cx="80" cy="120" r="24" class="node" />
+              <circle cx="260" cy="85" r="24" class="node" />
+              <circle cx="260" cy="205" r="24" class="node-soft standby" />
+              <circle cx="445" cy="120" r="24" class="node" />
+              <text x="80" y="125" text-anchor="middle" fill="#001e40" font-size="11" font-weight="800">SITE</text>
+              <text x="260" y="90" text-anchor="middle" fill="#001e40" font-size="11" font-weight="800">WAN</text>
+              <text x="260" y="210" text-anchor="middle" fill="#64748b" font-size="11" font-weight="800">LTE</text>
+              <text x="445" y="125" text-anchor="middle" fill="#001e40" font-size="11" font-weight="800">CLOUD</text>
+              <path d="M104 120 C165 64, 202 74, 236 85" class="blue-path" opacity=".75" />
+              <path d="M284 85 C346 78, 387 92, 421 120" class="blue-path" opacity=".75" />
+              <path d="M104 120 C170 212, 210 220, 236 205" class="red-path standby" />
+              <path d="M284 205 C348 214, 392 178, 421 120" class="red-path standby" />
+              <path d="M104 120 C170 120, 320 120, 421 120" class="green-path flow-late" />
+              <circle r="8" class="packet-red standby">
+                <animateMotion dur="3.2s" repeatCount="indefinite" path="M104 120 C170 212, 210 220, 236 205 C348 214, 392 178, 421 120" />
+              </circle>
+              <circle r="9" class="packet-green flow-late">
+                <animateMotion dur="3.6s" repeatCount="indefinite" path="M104 120 C170 120, 320 120, 421 120" />
+              </circle>
+              <g transform="translate(112,248)">
+                <rect x="0" y="0" width="296" height="16" rx="8" fill="#edf2f7" stroke="#e2e8f0" />
+                <rect x="0" y="0" width="255" height="16" rx="8" fill="#fb7185"><animate attributeName="width" values="255;255;78;78;255" keyTimes="0;0.35;0.7;0.92;1" dur="7s" repeatCount="indefinite" /><animate attributeName="fill" values="#fb7185;#fb7185;#059669;#059669;#fb7185" keyTimes="0;0.35;0.7;0.92;1" dur="7s" repeatCount="indefinite" /></rect>
+                <text x="0" y="-9" fill="#43474f" font-size="12" font-weight="800">cost exposure</text>
+                <text class="reveal" x="224" y="-9" fill="#059669" font-size="12" font-weight="850">controlled</text>
+              </g>
+            </svg>
+            <div class="anim-caption">LTE as failover</div>
+          </div>
+        </article>
+
+        <article class="impact-row fade-up">
+          <div class="impact-content">
+            <div class="company">NTT</div>
+            <h2 class="impact-title">AI PCAP Analyzer to reduce troubleshooting time</h2>
+            <p class="impact-summary">Created an AI-assisted PCAP analysis tool to speed up packet-level triage and help engineers move faster from raw capture to probable insight.</p>
+            <div class="two-box">
+              <div class="info-box problem">
+                <h3>Problem</h3>
+                <p>Manual PCAP review is slow, expertise-heavy, and difficult to scale across L1/L2 troubleshooting workflows.</p>
+              </div>
+              <div class="info-box value">
+                <h3>Action &amp; value</h3>
+                <p>Built AI-assisted parsing and summarization to identify patterns faster and improve consistency across troubleshooting handoffs.</p>
+              </div>
+            </div>
+          </div>
+          <div class="anim-panel">
+            <div class="anim-title">PCAP input &nbsp; | &nbsp; AI triage &nbsp; | &nbsp; engineer insight</div>
+            <svg class="pcap-svg" viewBox="0 0 500 260" aria-label="PCAP Analyzer AI troubleshooting animation">
+              <defs>
+                <clipPath id="pcapClip">
+                  <rect x="28" y="68" width="112" height="136" rx="12" />
+                </clipPath>
+              </defs>
+              <rect x="0" y="0" width="500" height="260" fill="#ffffff" />
+
+              <g>
+                <rect x="28" y="68" width="112" height="136" rx="12" fill="#f8fafc" stroke="#c3c6d1" />
+                <text x="84" y="96" text-anchor="middle" fill="#001e40" font-size="14" font-weight="850">PCAP</text>
+                <g fill="#64748b" font-size="9.5" font-family="monospace">
+                  <text x="44" y="122">tcp syn ack</text>
+                  <text x="44" y="144">dns tls flow</text>
+                  <text x="44" y="166">retrans win</text>
+                  <text x="44" y="188">latency drop</text>
+                </g>
+                <g clip-path="url(#pcapClip)">
+                  <rect x="36" y="112" width="96" height="20" rx="6" fill="rgba(0,98,162,.14)" style="animation: scan 3.2s linear infinite;" />
+                </g>
+              </g>
+
+              <path d="M156 136 H206" stroke="#0062a2" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8" />
+              <polygon points="206,136 194,128 194,144" fill="#0062a2" />
+
+              <g transform="translate(212,54)">
+                <circle cx="58" cy="82" r="52" fill="#001e40" />
+                <circle class="spin" cx="58" cy="82" r="66" fill="none" stroke="#62b0fe" stroke-width="2" stroke-dasharray="8 13" />
+                <circle class="spin" cx="58" cy="82" r="36" fill="none" stroke="#5dd8e2" stroke-width="2" stroke-dasharray="5 11" />
+                <text x="58" y="76" text-anchor="middle" fill="#ffffff" font-size="21" font-weight="900">AI</text>
+                <text x="58" y="99" text-anchor="middle" fill="#d5e3ff" font-size="10" font-weight="850">ANALYZER</text>
+              </g>
+
+              <path d="M334 136 H368" stroke="#059669" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8" />
+              <polygon points="368,136 356,128 356,144" fill="#059669" />
+
+              <g>
+                <rect class="reveal" x="382" y="76" width="92" height="30" rx="8" fill="#ecfdf5" stroke="#059669" />
+                <text class="reveal" x="428" y="95" text-anchor="middle" fill="#047857" font-size="10.5" font-weight="850">RCA hints</text>
+                <rect class="reveal" x="382" y="122" width="92" height="30" rx="8" fill="#eff6ff" stroke="#0062a2" />
+                <text class="reveal" x="428" y="141" text-anchor="middle" fill="#0062a2" font-size="10.5" font-weight="850">flow summary</text>
+                <rect class="reveal" x="382" y="168" width="92" height="30" rx="8" fill="#fff7ed" stroke="#c2410c" />
+                <text class="reveal" x="428" y="187" text-anchor="middle" fill="#c2410c" font-size="10.5" font-weight="850">anomalies</text>
+              </g>
+            </svg>
+            <div class="anim-caption">faster triage</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-pad" id="leadership">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Recognition and team enablement</h2>
+          <p class="section-copy">The broader value is practical team leverage: fewer repeated investigations, better handoffs, and reusable assets that help engineers move faster.</p>
+        </div>
+      </div>
+      <div class="recognition-grid">
+        <div class="mini-card fade-up">
+          <div class="icon-box">1</div>
+          <h3>Managed Network AI Hackathon</h3>
+          <p>Part of the winning team recognized for using AI to improve managed network service delivery and operational efficiency.</p>
+        </div>
+        <div class="mini-card fade-up">
+          <div class="icon-box">2</div>
+          <h3>Prisma technology tech-talks</h3>
+          <p>Delivered knowledge-sharing sessions on Prisma SD-WAN technology to improve troubleshooting confidence across the engineering team.</p>
+        </div>
+        <div class="mini-card fade-up">
+          <div class="icon-box">3</div>
+          <h3>Documentation and reusable scripts</h3>
+          <p>Created Sylvamo topology and operational guides, SBSA vEdge reboot reports, and scripts supporting TCCC transformation work.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="roadmap">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Ongoing and completed IaC and Network Automation work</h2>
+          <p class="section-copy">Part of the AI Democratization team under Shilpi, focused on bridging Dev and Ops through practical automation for network operations.</p>
+        </div>
+      </div>
+
+      <div class="roadmap">
+        <div class="road-item fade-up">
+          <div class="dot"></div>
+          <div>
+            <h3>Network Device Auto Health-check</h3>
+            <p>Automated validation of network state and performance metrics.</p>
+          </div>
+          <span class="status">Completed</span>
+        </div>
+        <div class="road-item fade-up">
+          <div class="dot gray"></div>
+          <div>
+            <h3>IaC Terraform + GitLab CI for Juniper Mist</h3>
+            <p>Starting with Mist, with a model that can later expand to additional network vendors.</p>
+          </div>
+          <span class="status ongoing">Ongoing</span>
+        </div>
+        <div class="road-item fade-up">
+          <div class="dot gray"></div>
+          <div>
+            <h3>L1/L2 task automation and SD-WAN EVT triage</h3>
+            <p>AI and automation initiative for SD-WAN issue triage, being built with Vivek Rajshekaran.</p>
+          </div>
+          <span class="status ongoing">Ongoing</span>
+        </div>
+      </div>
+
+      <div class="callout fade-up">
+        <div class="quote-mark">Current focus</div>
+        <p>Stabilize critical customer environments, reduce repeat troubleshooting effort, and scale network operations through documentation, automation, and AI-assisted workflows.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div><strong>NTT Data</strong> | Dheeraj Dubey</div>
+    <div>400 Club Recognition</div>
+  </footer>
+
+  <script>
+    document.body.classList.remove('no-js');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach((el, index) => {
+      el.style.transitionDelay = `${Math.min(index * 35, 180)}ms`;
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
