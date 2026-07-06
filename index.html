@@ -164,6 +164,50 @@
     .note-card strong { display: block; color: var(--primary); font-size: 14px; margin-bottom: 8px; }
     .note-card span { display: block; color: var(--muted); font-size: 13px; line-height: 1.55; }
 
+    .metric-strip {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 1040px;
+    }
+
+    .metric-card {
+      padding: 18px 18px 17px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-height: 154px;
+    }
+
+    .metric-value {
+      display: block;
+      color: var(--primary);
+      font-size: 25px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      display: block;
+      color: var(--secondary);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .metric-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
     .hero-visual {
       min-height: 340px;
       border: 1px solid var(--line);
@@ -348,8 +392,8 @@
 
     .recognition-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
     }
 
     .mini-card {
@@ -466,6 +510,7 @@
       .hero { grid-template-columns: 1fr; padding: 52px 22px 56px; }
       .hero-note { grid-template-columns: 1fr; }
       .hero-note.concise { grid-template-columns: 1fr; }
+      .metric-strip { grid-template-columns: 1fr; }
       .section-pad { padding: 54px 22px; }
       .section-head { align-items: flex-start; flex-direction: column; }
       .impact-row { grid-template-columns: 1fr; padding: 20px; }
@@ -498,7 +543,7 @@
         </div>
         <h1>Dheeraj Dubey</h1>
         <p class="hero-subtitle">
-          Stabilizing complex networks and scaling fixes through AI, automation, documentation, and team enablement.
+          Stabilizing complex networks, protecting customer continuity, and scaling fixes through AI, automation, documentation, and team enablement.
         </p>
         <div class="hero-note concise">
           <div class="note-card fade-up">
@@ -507,7 +552,30 @@
           </div>
           <div class="note-card fade-up">
             <strong>Proof areas</strong>
-            <span>Sylvamo stabilization, cost control, AI PCAP Analyzer, Prisma knowledge sharing, and automation/IaC work.</span>
+            <span>Sylvamo stabilization, service-renewal support, AI PCAP Analyzer, Prisma knowledge sharing, and automation/IaC work.</span>
+          </div>
+        </div>
+
+        <div class="metric-strip" aria-label="Management impact metrics">
+          <div class="metric-card fade-up">
+            <span class="metric-value">Renewal</span>
+            <span class="metric-label">Sylvamo LAN services</span>
+            <p>Long-pending issues were solved after taking over an incomplete handover, supporting renewal under the MCN platform.</p>
+          </div>
+          <div class="metric-card fade-up">
+            <span class="metric-value">Appreciated</span>
+            <span class="metric-label">Customer validation</span>
+            <p>Sylvamo recognized the work as commendable after critical routing and service-impacting issues were stabilized.</p>
+          </div>
+          <div class="metric-card fade-up">
+            <span class="metric-value">30%+</span>
+            <span class="metric-label">Efficiency uplift</span>
+            <p>Targeted improvement in repeat L1/L2 checks, PCAP triage, and handoff-ready summaries through automation and AI-assisted workflows.</p>
+          </div>
+          <div class="metric-card fade-up">
+            <span class="metric-value">70%</span>
+            <span class="metric-label">AI agent north star</span>
+            <p>Aim to shift recurring operations tasks to AI agents, with engineers focused on validation, exceptions, and customer outcomes.</p>
           </div>
         </div>
       </div>
@@ -517,7 +585,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Three impact lanes</h2>
-          <p class="section-copy">The case is not a task list. It is a repeatable pattern: stabilize the complex issue, protect customer value, then convert the learning into scalable capability.</p>
+          <p class="section-copy">The case is not a task list. It is a repeatable pattern: stabilize the complex issue, protect commercial continuity, then convert the learning into scalable capability and measurable efficiency.</p>
         </div>
       </div>
 
@@ -525,16 +593,16 @@
         <article class="impact-row fade-up">
           <div class="impact-content">
             <div class="company">Sylvamo</div>
-            <h2 class="impact-title">Hairpinning and random packet drop</h2>
-            <p class="impact-summary">Resolved post-migration routing behavior that created random path selection, loop-like forwarding, latency, and instability.</p>
+            <h2 class="impact-title">Sylvamo stabilization after incomplete handover</h2>
+            <p class="impact-summary">Took ownership of long-pending post-migration issues after a partial project handover and converted unstable routing behavior into predictable service operation.</p>
             <div class="two-box">
               <div class="info-box problem">
                 <h3>Problem</h3>
-                <p>Incorrect policy behavior caused traffic to move through inefficient paths, creating degraded performance and increased escalation noise.</p>
+                <p>Incomplete handover and incorrect policy behavior left traffic moving through inefficient paths, creating degraded performance, latency, and escalation noise.</p>
               </div>
               <div class="info-box value">
                 <h3>Action &amp; value</h3>
-                <p>Corrected routing and path-policy behavior to restore predictable forwarding, reduce latency complaints, and stabilize customer operations.</p>
+                <p>Corrected routing and path-policy behavior, resolved the long-pending issues, and helped protect Sylvamo LAN services renewal under the MCN platform.</p>
               </div>
             </div>
           </div>
@@ -577,7 +645,7 @@
           <div class="impact-content">
             <div class="company">Sylvamo</div>
             <h2 class="impact-title">Path policy and LTE traffic steering</h2>
-            <p class="impact-summary">Corrected LTE behavior so cellular paths support failover instead of carrying avoidable traffic while primary circuits are healthy.</p>
+            <p class="impact-summary">Corrected LTE behavior so cellular paths support failover instead of carrying avoidable traffic while primary circuits are healthy, reducing unnecessary usage and cost exposure.</p>
             <div class="two-box">
               <div class="info-box problem">
                 <h3>Problem</h3>
@@ -585,7 +653,7 @@
               </div>
               <div class="info-box value">
                 <h3>Action &amp; value</h3>
-                <p>Implemented traffic steering and failover behavior to control cost exposure while preserving WAN resilience.</p>
+                <p>Implemented traffic steering and failover behavior to control unnecessary cellular usage while preserving WAN resilience and customer confidence.</p>
               </div>
             </div>
           </div>
@@ -627,7 +695,7 @@
           <div class="impact-content">
             <div class="company">NTT</div>
             <h2 class="impact-title">AI PCAP Analyzer to reduce troubleshooting time</h2>
-            <p class="impact-summary">Created an AI-assisted PCAP analysis tool to speed up packet-level triage and help engineers move faster from raw capture to probable insight.</p>
+            <p class="impact-summary">Created an AI-assisted PCAP analysis tool to speed up packet-level triage, with a targeted 30%+ efficiency uplift in selected repeat troubleshooting workflows.</p>
             <div class="two-box">
               <div class="info-box problem">
                 <h3>Problem</h3>
@@ -635,7 +703,7 @@
               </div>
               <div class="info-box value">
                 <h3>Action &amp; value</h3>
-                <p>Built AI-assisted parsing and summarization to identify patterns faster and improve consistency across troubleshooting handoffs.</p>
+                <p>Built AI-assisted parsing and summarization to identify patterns faster, reduce manual review effort, and improve consistency across troubleshooting handoffs.</p>
               </div>
             </div>
           </div>
@@ -696,22 +764,27 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Recognition and team enablement</h2>
-          <p class="section-copy">The broader value is practical team leverage: fewer repeated investigations, better handoffs, and reusable assets that help engineers move faster.</p>
+          <p class="section-copy">The broader value is practical team leverage: customer trust, fewer repeated investigations, better handoffs, and reusable assets that help engineers move faster.</p>
         </div>
       </div>
       <div class="recognition-grid">
         <div class="mini-card fade-up">
           <div class="icon-box">1</div>
+          <h3>Sylvamo customer appreciation</h3>
+          <p>Received customer appreciation for a commendable job in stabilizing critical LAN and SD-WAN service issues.</p>
+        </div>
+        <div class="mini-card fade-up">
+          <div class="icon-box">2</div>
           <h3>Managed Network AI Hackathon</h3>
           <p>Part of the winning team recognized for using AI to improve managed network service delivery and operational efficiency.</p>
         </div>
         <div class="mini-card fade-up">
-          <div class="icon-box">2</div>
+          <div class="icon-box">3</div>
           <h3>Prisma technology tech-talks</h3>
           <p>Delivered knowledge-sharing sessions on Prisma SD-WAN technology to improve troubleshooting confidence across the engineering team.</p>
         </div>
         <div class="mini-card fade-up">
-          <div class="icon-box">3</div>
+          <div class="icon-box">4</div>
           <h3>Documentation and reusable scripts</h3>
           <p>Created Sylvamo topology and operational guides, SBSA vEdge reboot reports, and scripts supporting TCCC transformation work.</p>
         </div>
@@ -722,7 +795,7 @@
       <div class="section-head">
         <div>
           <h2 class="section-title">Ongoing and completed IaC and Network Automation work</h2>
-          <p class="section-copy">Part of the AI Democratization team under Shilpi, focused on bridging Dev and Ops through practical automation for network operations.</p>
+          <p class="section-copy">Part of the AI Democratization team under Shilpi, focused on bridging Dev and Ops through practical automation for network operations. The program north star is to move 70% of repeatable operations tasks toward AI-agent-assisted execution.</p>
         </div>
       </div>
 
@@ -747,15 +820,15 @@
           <div class="dot gray"></div>
           <div>
             <h3>L1/L2 task automation and SD-WAN EVT triage</h3>
-            <p>AI and automation initiative for SD-WAN issue triage, being built with Vivek Rajshekaran.</p>
+            <p>AI and automation initiative for SD-WAN issue triage, being built with Vivek Rajshekaran and aligned to the 70% AI-agent-assisted operations target.</p>
           </div>
           <span class="status ongoing">Ongoing</span>
         </div>
       </div>
 
       <div class="callout fade-up">
-        <div class="quote-mark">Current focus</div>
-        <p>Stabilize critical customer environments, reduce repeat troubleshooting effort, and scale network operations through documentation, automation, and AI-assisted workflows.</p>
+        <div class="quote-mark">Current focus and north star</div>
+        <p>Stabilize critical customer environments, reduce repeat troubleshooting effort by 30%+ in targeted workflows, and progress toward 70% recurring operations tasks handled by AI agents with engineer validation.</p>
       </div>
     </section>
   </main>
